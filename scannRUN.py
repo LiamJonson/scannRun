@@ -1,7 +1,6 @@
 from socket import *
 from termcolor import colored
-import ipaddress
-import sys, time
+
 import threading
 w = 0
 def connScan(host, port,tekst):
