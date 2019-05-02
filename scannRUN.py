@@ -8,6 +8,7 @@ def connScan(host, port,tekst):
     s.settimeout(2)
     result = s.connect_ex((str(host),int(port)))
     global w
+
     if result == 0:
         print(colored("Tcp {} - Port {} is open\n".format(host, port),'green'))
         with open(tekst, 'a') as worK_ip:
@@ -22,6 +23,8 @@ def connScan(host, port,tekst):
 found_ip =[]
 ports = [8000,8080,8888,7000,37000,34567]
 spis =[]
+
+
 #with open('111.txt','r') as gla:
 #    for i in gla:
 #        i = i.strip()
@@ -32,6 +35,8 @@ spis =[]
 #        else:
 #            for ip in n:
 #                spis.append(ip)
+
+
 def ipRange(start_ip, end_ip):    #ip list generation function
     start = list(map(int, start_ip.split(".")))
     end = list(map(int, end_ip.split(".")))
@@ -46,13 +51,19 @@ def ipRange(start_ip, end_ip):    #ip list generation function
                 temp[i - 1] += 1
         ip_range.append(".".join(map(str, temp)))
     return ip_range
+
+
 with open('111.txt') as diap: # port list format 0.0.0.0-0.0.0.0
     for i in diap:
         start,end = i.split('-')
         ip_range = ipRange(start, end)
+
+
 #for port in ports:
 #    for ip in spis:
 #        connScan(ip,port)
+
+
 while True:
     for i in ip_range:
         p1 = threading.Thread(target=connScan, args=(i, ports[0], '222.txt'))
